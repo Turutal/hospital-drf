@@ -1,0 +1,4 @@
+from .doctor import DoctorListSerializer, DoctorRetrieveSerializer, DoctorUpdateSerializer, DoctorCreateSerializer
+from .service import ServiceListSerializer, ServiceCreateSerializer, ServiceUpdateSerializer, ServiceRetrieveSerializer
+from .visit import VisitListSerializer, VisitRetrieveSerializer, VisitCreateSerializer, VisitUpdateSerializer
+from .patient import PatientListSerializer, PatientRetrieveSerializer, PatientCreateOrUpdateSerializer
