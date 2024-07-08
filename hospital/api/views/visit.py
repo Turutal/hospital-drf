@@ -11,6 +11,9 @@ class VisitView(
     mixins.RetrieveModelMixin,
     mixins.DestroyModelMixin
 ):
+
+    lookup_field = 'id'
+
     def get_serializer_class(self):
         if self.action == 'list':
             return VisitListSerializer

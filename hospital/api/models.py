@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Specialization(models.Model):
@@ -71,3 +72,41 @@ class Visit(models.Model):
     @property
     def get_info(self):
         return f'{self.doctor.full_name} - {self.patient.full_name} - {self.visit_date_time}'
+
+
+class DoctorSchedule(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='schedule')
+    day_of_week = models.CharField(max_length=10, choices=[
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+        ('Saturday', 'Saturday'),
+        ('Sunday', 'Sunday'),
+    ])
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.doctor.full_name} - {self.day_of_week}: {self.start_time} - {self.end_time}"
+
+
+class Feedback(models.Model):
+    visit = models.ForeignKey(Visit, on_delete=models.CASCADE, related_name='patient_feedback')
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    comment = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Rating: {self.rating} - {self.visit}"
+
+
+class FinancialRecord(models.Model):
+    date = models.DateField()
+    revenue = models.FloatField()
+    expenses = models.FloatField()
+
+    @property
+    def get_record(self):
+        return f'{self.date} - Profit: {self.revenue - self.expenses}'
+

@@ -1,7 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from ..mixins import HospitalGenericViewSet
-from rest_framework import viewsets, mixins
+from rest_framework import mixins
 
 from ..models import Patient
 from ..serializers import PatientListSerializer, PatientRetrieveSerializer, PatientCreateOrUpdateSerializer

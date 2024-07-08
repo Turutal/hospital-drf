@@ -2,3 +2,7 @@ from .doctor import DoctorListSerializer, DoctorRetrieveSerializer, DoctorUpdate
 from .service import ServiceListSerializer, ServiceCreateSerializer, ServiceUpdateSerializer, ServiceRetrieveSerializer
 from .visit import VisitListSerializer, VisitRetrieveSerializer, VisitCreateSerializer, VisitUpdateSerializer
 from .patient import PatientListSerializer, PatientRetrieveSerializer, PatientCreateOrUpdateSerializer
+from .schedule import DoctorScheduleSerializer, DoctorScheduleUpdateSerializer
+from .feedback import FeedbackSerializer
+from .finance import FinanceRecordSerializer, FinanceRecordListSerializer
+

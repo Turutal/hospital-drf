@@ -4,7 +4,8 @@ from rest_framework_simplejwt.views import (
 )
 from django.urls import path
 from rest_framework.authtoken import views
-from .views import DoctorView, ServiceView, VisitView, PatientView
+from .views import DoctorView, ServiceView, VisitView, PatientView, AnalyticView, FeedbackView, FinanceView
+from .views.schedule import ScheduleView
 
 urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -71,4 +72,39 @@ urlpatterns = [
             'put': 'update'
         })
     ),
+    path(
+        'feedback/',
+        FeedbackView.as_view({
+            'get': 'list',
+            'post': 'create'
+        })
+    ),
+    path(
+        'finance/',
+        FinanceView.as_view({
+            'get': 'list',
+            'post': 'create'
+        })
+    ),
+    path(
+        'schedule/',
+        ScheduleView.as_view({
+            'get': 'list',
+            'post': 'create'
+        })
+    ),
+    path(
+        'schedule/<int:id>',
+        ScheduleView.as_view({
+            'get': 'retrieve',
+            'put': 'update',
+            'delete': 'destroy'
+        })
+    ),
+    path(
+        'analytics/',
+        AnalyticView.as_view({
+            'get': 'get_analytics'
+        })
+    )
 ]
